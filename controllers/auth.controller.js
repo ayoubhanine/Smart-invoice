@@ -46,7 +46,7 @@ export const loginUser=async(req,res)=>{
         const{email,password}=req.body;
 
         //verif user(email)
-        const user=await user.findOne({email});
+        const user=await User.findOne({email});
         if(!user){
            return  res.status(400).json({message:"invalid email"})
         }
