@@ -6,6 +6,15 @@ export const registerValidation = [
   body("password")
     .isLength({ min: 6 })
     .withMessage("password must be at least 6 chars"),
+    body("passwordConfirmation")
+    .notEmpty()
+    .withMessage("password confirmation is required")
+    .custom((value, { req }) => {
+      if (value !== req.body.password) {
+        throw new Error("passwords do not match");
+      }
+      return true;
+    }),
   body("role")
     .optional()
     .isIn(["client", "admin"])
