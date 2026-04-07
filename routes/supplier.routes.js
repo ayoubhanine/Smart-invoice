@@ -12,5 +12,5 @@ router.post("/suppliers",protect,createSupplier);
 router.get("/suppliers",protect,getsuppliers);
 router.get("/suppliers/:id",protect,getsuppliersById);
 router.put("/suppliers/:id",protect,updatesupplier);
-router.delete("/suppliers/:id",protect,deletesupplier)
+router.delete("/suppliers/:id",protect,deletesupplier);
 export default router;

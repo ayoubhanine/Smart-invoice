@@ -3,12 +3,12 @@ import Supplier from "../models/Supplier.js"
 //create supplier
 export const createSupplier=async(req,res)=>{
     try{
-        const {name,email,phone,adress}=req.body;
+        const {name,email,phone,address}=req.body;
         const supplier=await Supplier.create({
                 name,
                 email,
                 phone,
-                adress,
+                address,
                 client:req.user._id,
         
         });
@@ -32,11 +32,11 @@ export const getsuppliers=async(req,res)=>{
 //get supplier by id
 export const getsuppliersById=async(req,res)=>{
     try{
-        const suppliers=await Supplier.findById(req.params.id)
-        if(!suppliers){
-            return res.status(404).json("supplier not found")
+        const supplier=await Supplier.findById(req.params.id)
+        if(!supplier){
+            return res.status(404).json({message:"supplier not found"})
         }
-        res.json(suppliers)
+        res.json(supplier)
 
 
     }catch(err){

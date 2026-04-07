@@ -2,7 +2,8 @@ import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js"
 import authRoutes from "./routes/auth.routes.js";
-import supplierRoutes from "./routes/supplier.routes.js"
+import supplierRoutes from "./routes/supplier.routes.js";
+import invoiceRoutes from "./routes/invoice.routes.js";
 
 
 dotenv.config();
@@ -12,8 +13,8 @@ const app=express();
 
 app.use(express.json());
 app.use("/api",authRoutes);
-app.use("/api",supplierRoutes)
-
+app.use("/api",supplierRoutes);
+app.use("/api",invoiceRoutes);
 // Server start
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
