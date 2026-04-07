@@ -1,0 +1,80 @@
+import Supplier from "../models/Supplier.js"
+
+//create supplier
+export const createSupplier=async(req,res)=>{
+    try{
+        const {name,email,phone,adress}=req.body;
+        const supplier=await Supplier.create({
+                name,
+                email,
+                phone,
+                adress,
+                client:req.user._id,
+        
+        });
+        res.status(201).json(supplier)
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+};
+
+//Get my suppliers
+
+export const getsuppliers=async(req,res)=>{
+    try{
+        const suppliers=await Supplier.find({client:req.user._id});
+        res.json(suppliers)
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+};
+
+//get supplier by id
+export const getsuppliersById=async(req,res)=>{
+    try{
+        const suppliers=await Supplier.findById(req.params.id)
+        if(!suppliers){
+            return res.status(404).json("supplier not found")
+        }
+        res.json(suppliers)
+
+
+    }catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+//update supplier
+
+export const updatesupplier=async(req,res)=>{
+    try{
+        const suppliers=await Supplier.findById(req.params.id);
+        if(!suppliers){
+            return res.status(404).json({message:"supplier not found"})
+        }
+        const updatedsupplier=await Supplier.findByIdAndUpdate(req.params.id,
+            req.body,
+            {new:true});
+            res.json(updatedsupplier)
+    }
+    catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+//delete suppliers
+
+export const deletesupplier=async(req,res)=>{
+    try{
+        const supplier=await Supplier.findById(req.params.id)
+        if(!supplier){
+            return res.status(404).json({message:"supplier not found "})
+        }
+        await supplier.deleteOne()
+        res.json({message:"supplier deleted succesufly"})
+    }
+    catch(err){
+            res.status(500).json({message:err.message})
+    }
+}
+

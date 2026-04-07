@@ -8,7 +8,8 @@ export const registerValidation = [
     .withMessage("password must be at least 6 chars"),
     body("passwordConfirmation")
     .notEmpty()
-    .withMessage("password confirmation is required")
+    .withMessage("password confirmation is required") //Dans express-validator,custom veut dire validation personnalisée.
+
     .custom((value, { req }) => {
       if (value !== req.body.password) {
         throw new Error("passwords do not match");
