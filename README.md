@@ -4,4 +4,4 @@
 ![Diagramme de cas d utilisation ](diagrammes/useCase.jpg)
 
 ## Diagramme de classes
-![Diagramme de classes ](images/ClassDiagramme.png)
+![Diagramme de classes ](diagrammes/ClassDiagramme.png)
