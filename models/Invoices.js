@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-const itemSchema=new mongoose.Schema({
+const facturepropSchema=new mongoose.Schema({
     name:{
         type:String,
         required:true,
@@ -17,7 +17,7 @@ const itemSchema=new mongoose.Schema({
 
 });
 const invoicesSchema=new mongoose.Schema({
-    items:[itemSchema],
+    facture_proprites:[facturepropSchema],
     total:{
         type:Number,
         required:true,
