@@ -1,5 +1,5 @@
 import express from "express";
-
+import { getstats } from "../controllers/stats.controller.js";
 import { createSupplier,getsuppliers
     ,getsuppliersById
     ,updatesupplier,
@@ -13,4 +13,5 @@ router.get("/suppliers",protect,getsuppliers);
 router.get("/suppliers/:id",protect,getsuppliersById);
 router.put("/suppliers/:id",protect,updatesupplier);
 router.delete("/suppliers/:id",protect,deletesupplier);
+router.get("/suppliers/:id/stats",protect,getstats)
 export default router;
