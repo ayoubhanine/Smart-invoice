@@ -17,7 +17,7 @@ export const createPayement=async(req,res)=>{
                 return res.status(400).json({message:"vous navez pas le droit de depaaser montant total du facture"})
         }
          const payement=await Payement.create({
-            invoice:facture._id,
+            invoiceId:facture._id,
             amount,
             payementDate,
         })
@@ -39,4 +39,21 @@ export const createPayement=async(req,res)=>{
     catch(err){
         res.status(500).json({message:err.message})
     }
+}
+export const getpayements=async(req,res)=>{
+        try{
+            const invoice=await Invoice.findOne({
+                _id:req.params.id,
+                client:req.user._id,
+            });
+            if(!invoice){
+                return res.status(404).json({message:"facture not trouvé"})
+            }
+            const payements=await Payement.find({
+                invoiceId:req.params.id, })
+                res.json(payements)
+        }
+        catch(err){
+            res.status(500).json({message:err.message})
+        }
 }
