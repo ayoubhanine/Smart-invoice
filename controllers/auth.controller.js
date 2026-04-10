@@ -1,5 +1,6 @@
 import User from "../models/User.js";
 import bcrypt from "bcrypt";
+import { createCheckSchema } from "express-validator/lib/middlewares/schema.js";
 import jwt from "jsonwebtoken";
 
 const generateToken=(id)=>{
@@ -62,6 +63,16 @@ export const loginUser=async(req,res)=>{
             role:user.role,
             token:generateToken(user._id),
          })
+    }
+    catch(err){
+        res.status(500).json({message:err.message})
+    }
+}
+
+export const getmyinfo=async(req,res)=>{
+    try{
+        const profile=await User.findById(req.user._id).select("-password")
+        res.json(profile)
     }
     catch(err){
         res.status(500).json({message:err.message})
