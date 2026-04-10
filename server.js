@@ -16,7 +16,7 @@ app.use("/api",authRoutes);
 app.use("/api",supplierRoutes);
 app.use("/api",invoiceRoutes);
 app.use("/api",payementsRoutes);
-// Server start
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

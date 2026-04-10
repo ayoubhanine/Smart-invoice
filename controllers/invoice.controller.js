@@ -69,7 +69,7 @@ export const updateinvoice=async(req,res)=>{
         if(!invoice){
             return res.status(404).json({message:"invoice not found"})
         }
-        //gerer si facture est paye ou pas encore
+        
         if(invoice.status==="paid"){
             return res.status(400).json({message:"vous ne peuvez pas modifier une facture payée"})
         }

@@ -1,6 +1,6 @@
 import Supplier from "../models/Supplier.js"
 
-//create supplier
+
 export const createSupplier=async(req,res)=>{
     try{
         const {name,email,phone,address}=req.body;
@@ -18,7 +18,7 @@ export const createSupplier=async(req,res)=>{
     }
 };
 
-//Get my suppliers
+
 
 export const getsuppliers=async(req,res)=>{
     try{
@@ -29,7 +29,7 @@ export const getsuppliers=async(req,res)=>{
     }
 };
 
-//get supplier by id
+
 export const getsuppliersById=async(req,res)=>{
     try{
         const supplier=await Supplier.findById(req.params.id)
@@ -44,7 +44,7 @@ export const getsuppliersById=async(req,res)=>{
     }
 }
 
-//update supplier
+
 
 export const updatesupplier=async(req,res)=>{
     try{
@@ -62,7 +62,7 @@ export const updatesupplier=async(req,res)=>{
     }
 }
 
-//delete suppliers
+
 
 export const deletesupplier=async(req,res)=>{
     try{

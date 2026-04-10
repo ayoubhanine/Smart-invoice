@@ -8,7 +8,7 @@ const generateToken=(id)=>{
     });
 }
 
-//register
+
 export const registerUser=async(req,res)=>{
     try{
         const{name,email,password,role}=req.body
@@ -40,17 +40,17 @@ export const registerUser=async(req,res)=>{
             res.status(500).json({message:err.message})
         }
 };
-//login
+
 export const loginUser=async(req,res)=>{
     try{
         const{email,password}=req.body;
 
-        //verif user(email)
+        
         const user=await User.findOne({email});
         if(!user){
            return  res.status(400).json({message:"invalid email"})
         }
-         //verif user(passwd)
+         
          const isMatch=await bcrypt.compare(password,user.password);
          if(!isMatch){
             return res.status(400).json({message:"invalid password"})

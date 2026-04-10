@@ -5,6 +5,7 @@ import { createSupplier,getsuppliers
     ,updatesupplier,
 deletesupplier } from "../controllers/supplier.controller.js";
 import { protect } from "../middlewares/auth.middleware.js";
+import { getdashboared } from "../controllers/dashboard .controller.js";
 
 const router=express.Router();
 
@@ -13,5 +14,7 @@ router.get("/suppliers",protect,getsuppliers);
 router.get("/suppliers/:id",protect,getsuppliersById);
 router.put("/suppliers/:id",protect,updatesupplier);
 router.delete("/suppliers/:id",protect,deletesupplier);
-router.get("/suppliers/:id/stats",protect,getstats)
+router.get("/suppliers/:id/stats",protect,getstats);
+router.get("/dashboard",protect,getdashboared)
+
 export default router;
