@@ -31,18 +31,58 @@ export const createInvoice=async (req,res)=>{
     }
 };
 
+// export const getinvoices=async(req,res)=>{
+//     try{
+//         const invoices=await Invoice.find({client:req.user._id}).
+//         populate("supplier","name email").
+//         sort({createdAt:-1});
+//         res.json(invoices)
+
+//     }
+//     catch(err){
+//         res.status(500).json({message:err.message})
+//     }
+// };
+
 export const getinvoices=async(req,res)=>{
     try{
-        const invoices=await Invoice.find({client:req.user._id}).
-        populate("supplier","name email").
-        sort({createdAt:-1});
-        res.json(invoices)
+        const {status,page,limit=2,total}=req.query;
+        let filter={client:req.user._id}
+
+        if(status){
+            filter.status=status;
+        }
+
+    const invoice=await Invoice.findOne({
+        client:req.user._id
+    })
+if (minTotal){
+    f
+}
+
+        const skip=(1-page)*limit
+        const totalItems=await Invoice.countDocuments(filter);
+        const invoices=await Invoice.find(filter).
+        populate("supplier","name ").
+        skip(Number(skip)).
+        limit(Number(limit)).
+        sort({createdAt:-1})
+        res.json({
+            totalItems,
+            currentPage:page,
+            results:invoices,
+            totalPages:Math.ceil(total/limit),
+        })
+
+
+
 
     }
     catch(err){
         res.status(500).json({message:err.message})
     }
-};
+}
+
 
 export const getinvoiceById=async(req,res)=>{
     try{
